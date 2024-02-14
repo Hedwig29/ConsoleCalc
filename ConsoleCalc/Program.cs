@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Xml.Schema;
 using static System.Collections.Specialized.BitVector32;
 
 class Calculator
@@ -18,7 +19,13 @@ class Calculator
 
             Console.Write("Выберите операцию (1/2/3/4/5): ");
             string action = Console.ReadLine();
-            int.TryParse(action, out int value);
+            bool result1 = int.TryParse(action, out int value);
+            while (!result1) 
+            {
+                Console.WriteLine("Пожалуйста, введите число");
+                action = Console.ReadLine();
+                result1 = int.TryParse(action, out  value);
+            }
 
             double number1, number2, total;
 
@@ -26,7 +33,7 @@ class Calculator
             number1 = double.Parse(Console.ReadLine());
             Console.WriteLine("Введите второе число");
             number2 = double.Parse(Console.ReadLine());
-
+            
             switch (action)
             {
                 case "1":
